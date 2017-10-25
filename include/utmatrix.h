@@ -64,6 +64,8 @@ TVector<ValType>::TVector(int s, int si)
 {
 	if(s>MAX_VECTOR_SIZE || s<0)
 		throw "error";
+	if(si>MAX_VECTOR_SIZE || si<0)
+		throw "error";
 	Size = s;
 	StartIndex = si;
 	pVector = new ValType [s];
@@ -89,6 +91,8 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
+	if((pos-StartIndex)<0 || (pos-StartIndex)>Size)
+		throw "error";
 		return pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
